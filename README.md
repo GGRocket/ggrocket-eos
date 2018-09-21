@@ -1,3 +1,6 @@
+# GG Robot Tokenomics
+![Image of GG Robot Tokenomics]
+(images/tokenomics.png)
 
 # To build Docker
 docker-compose build
