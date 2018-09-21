@@ -1,9 +1,6 @@
 # GG Robot Tokenomics
 ![alt text](https://github.com/GGRocket/ggrocket-eos/blob/master/images/tokenomics.png "GG Robot Tokenomics")
 
-![Image of GG Robot Tokenomics]
-()
-
 # To build Docker
 docker-compose build
 
