@@ -39,7 +39,6 @@ eosiocpp -g /eosdev/ggrobot/ggrobot.abi /eosdev/ggrobot/ggrobot.hpp && eosiocpp 
 
 # Run the Tests
 Run the commands in ggrobot/ggrobot.sh to execute the tests
-<<<<<<< HEAD
 
 # Run JavaScript File
 Follow the below commands and you should be able to see new purchase records showing in the purrecords table.
@@ -49,5 +48,9 @@ npm install
 node newpurrecord.js
 cleos get table ggrobot ggrobot purrecords
 ```
-=======
->>>>>>> 2dfc4bd251eadfae893ffd2008e685f2a3af4383
+
+To add a new account. Edit "myaccount" in "newaccount.js" to the name you want to create.
+```
+node newaccount.js
+cleos get account myaccount
+```
