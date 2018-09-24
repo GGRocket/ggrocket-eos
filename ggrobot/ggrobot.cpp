@@ -1,12 +1,12 @@
 #include "ggrobot.hpp"
 
-void ggrobot::newpurrecord  (const uint64_t   purchase_id,
-                        const account_name  gamebuyer,
-                        const string        source,
-                        const string        game,
-                        const string        purchase_name,
-                        const asset         price,
-                        uint32_t            purchase_date) {
+void ggrobot::newpurrecord  (   const uint64_t      purchase_id,
+                                const account_name  gamebuyer,
+                                const string        source,
+                                const string        game,
+                                const string        purchase_name,
+                                const asset         price,
+                                const uint32_t      purchase_date) {
 
     purrecord_table pr_t (_self, _self);
     pr_t.emplace (_self, [&](auto &p) {
@@ -33,8 +33,8 @@ void ggrobot::newidentity ( const string    name,
 
 }
 
-void ggrobot::reveal ( const account_name gamebuyer,
-                        const uint64_t  identity) {
+void ggrobot::reveal ( const account_name   gamebuyer,
+                        const uint64_t      identity) {
     ridentity_table r_t (_self, _self);
     r_t.emplace (_self, [&](auto &r) {
         r.revidentity_id    = r_t.available_primary_key();
@@ -93,7 +93,6 @@ void ggrobot::buyidentity ( const account_name gamebuyer,
 
 void ggrobot::apply(const account_name contract, const account_name act)
 {
-
     if (act == N(transfer))
     {
         transferReceived(unpack_action_data<currency::transfer>(), contract);
@@ -116,7 +115,7 @@ void ggrobot::transferReceived(const currency::transfer &transfer, const account
     {
         return;
     }
-
+              
     print("Account Name     :   ", name{code}, "\n");
     print("From             :   ", name{transfer.from}, "\n");
     print("To               :   ", name{transfer.to}, "\n");
@@ -143,13 +142,11 @@ void ggrobot::transferReceived(const currency::transfer &transfer, const account
 
     print(name{transfer.from}, " deposited:       ", transfer.quantity, "\n");
     print(name{transfer.from}, " funds available: ", new_balance);
-   
 }
 
 
 extern "C"
 {
-    //using namespace bay;
     using namespace eosio;
 
     void apply(uint64_t receiver, uint64_t code, uint64_t action)

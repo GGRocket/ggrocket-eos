@@ -22,7 +22,7 @@ public:
                         uint32_t            purchase_date) ;
 
     // @abi action
-    void newidentity (    const string        name,
+    void newidentity (  const string        name,
                         const string        email_address );
 
     // // @abi action
