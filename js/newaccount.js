@@ -1,25 +1,74 @@
-Eos = require('eosjs')
+const eosjs = require('eosjs');
+const fetch = require('node-fetch');                            // node only; not needed in browsers
+const { TextDecoder, TextEncoder } = require('text-encoding');  // node, IE11 and IE Edge Browsers
 
-chain = {
-    main: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906', // main network
-    jungle: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // jungle testnet
-    sys: 'cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f' // local developer
-}
+const defaultPrivateKey = "5JhhMGNPsuU42XXjZ57FcDKvbb7KLrehN65tdTQFrH51uruZLHi"; // useraaaaaaaa
+const signatureProvider = new eosjs.SignatureProvider([defaultPrivateKey]);
 
-eos = Eos({
-    keyProvider: '5JhhMGNPsuU42XXjZ57FcDKvbb7KLrehN65tdTQFrH51uruZLHi',// private key
-    httpEndpoint: 'http://127.0.0.1:8888',
-    chainId: chain.sys,
+const rpc = new eosjs.Rpc.JsonRpc('http://127.0.0.1:8888', { fetch });
+const api = new eosjs.Api({ rpc, signatureProvider, textDecoder: new TextDecoder, textEncoder: new TextEncoder });
+
+
+const result = await api.transact({
+  actions: [{
+    account: 'eosio',
+    name: 'newaccount',
+    authorization: [{
+      actor: 'useraaaaaaaa',
+      permission: 'active',
+    }],
+    data: {
+      creator: 'useraaaaaaaa',
+      name: 'mynewaccount',
+      owner: {
+        threshold: 1,
+        keys: [{
+          key: 'PUB_R1_6FPFZqw5ahYrR9jD96yDbbDNTdKtNqRbze6oTDLntrsANgQKZu',
+          weight: 1
+        }],
+        accounts: [],
+        waits: []
+      },
+      active: {
+        threshold: 1,
+        keys: [{
+          key: 'PUB_R1_6FPFZqw5ahYrR9jD96yDbbDNTdKtNqRbze6oTDLntrsANgQKZu',
+          weight: 1
+        }],
+        accounts: [],
+        waits: []
+      },
+    },
+  },
+  {
+    account: 'eosio',
+    name: 'buyrambytes',
+    authorization: [{
+      actor: 'useraaaaaaaa',
+      permission: 'active',
+    }],
+    data: {
+      payer: 'useraaaaaaaa',
+      receiver: 'mynewaccount',
+      bytes: 8192,
+    },
+  },
+  {
+    account: 'eosio',
+    name: 'delegatebw',
+    authorization: [{
+      actor: 'useraaaaaaaa',
+      permission: 'active',
+    }],
+    data: {
+      from: 'useraaaaaaaa',
+      receiver: 'mynewaccount',
+      stake_net_quantity: '1.0000 SYS',
+      stake_cpu_quantity: '1.0000 SYS',
+      transfer: false,
+    }
+  }]
+}, {
+  blocksBehind: 3,
+  expireSeconds: 30,
 });
-
-wif = '5JhhMGNPsuU42XXjZ57FcDKvbb7KLrehN65tdTQFrH51uruZLHi'
-pubkey = 'EOS7ckzf4BMgxjgNSYV22rtTXga8R9Z4XWVhYp8TBgnBi2cErJ2hn'
-
-eos.transaction(tr => {
-  tr.newaccount({
-    creator: 'ggrobot',
-    name: 'myaccount',
-    owner: pubkey,
-    active: pubkey
-  })
-})

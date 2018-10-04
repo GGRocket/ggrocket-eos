@@ -1,15 +1,11 @@
 #----------------------------
-# Opencrowd Boilerplate
+# EOSBAY-DEV-Base
+# Digital Scarcity base image of EOSBAY-DEV
 #----------------------------
 # VERSION 1.1.0
-# AUTHOR: Max Gravitt
-# DESCRIPTION: base image of EOS dev
+# AUTHOR: Raphael Gaudreault
+# DESCRIPTION: base image of EOSBAY-DEV
 
 FROM eosio/eos-dev:v1.2.5
-MAINTAINER Max Gravitt <mgravitt@opencrowd.com>
-LABEL authors="mgravitt@opencrowd.com"
 
-#COPY ./contracts-entrypoint.sh /
-#COPY ./contracts /opt/eosio/bin/data-dir/contracts
 
-#RUN chmod +x ./contracts-entrypoint.sh

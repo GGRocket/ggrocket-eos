@@ -1,3 +1,8 @@
+# Test Keys
+Private key: 5K8NBD4skWKZjyCv6TeSDG6jDMXcboaL7g3UY38funpSA5Kkb67
+Public key: EOS8ThaKBHihQo1FXJ2UsL7gkaV77Z2Yr2U6fsatK5L1CXyYvVXh1
+
+
 # GG Robot Tokenomics
 ![alt text](https://github.com/GGRocket/ggrocket-eos/blob/master/images/tokenomics.png "GG Robot Tokenomics")
 
@@ -13,12 +18,12 @@ docker-compose up -d
 
 # To unlock wallet (use your password)
 ```
-docker exec -it securrency_nodeosd_1 /opt/eosio/bin/cleos -u http://nodeosd:8888 --wallet-url http://keosd:8900 wallet unlock --password *<your-wallet-password>*
+docker exec -it ggrocket_nodeosd_1 /opt/eosio/bin/cleos -u http://nodeosd:8888 --wallet-url http://keosd:8900 wallet unlock --password *<your-wallet-password>*
 ```
 
 # Import this private key into your wallet
 ```
-docker exec -it seccurency_nodeosd_1 cleos wallet import --private-key 5JhhMGNPsuU42XXjZ57FcDKvbb7KLrehN65tdTQFrH51uruZLHi
+docker exec -it ggrocket_nodeosd_1 cleos wallet import --private-key 5JhhMGNPsuU42XXjZ57FcDKvbb7KLrehN65tdTQFrH51uruZLHi
 ```
 
 # To view live logs
@@ -40,7 +45,7 @@ eosiocpp -g /eosdev/ggrobot/ggrobot.abi /eosdev/ggrobot/ggrobot.hpp && eosiocpp 
 # Run the Tests
 Run the commands in ggrobot/ggrobot.sh to execute the tests
 
-# Run JavaScript File
+# Run JavaScript Files
 Follow the below commands and you should be able to see new purchase records showing in the purrecords table.
 ```
 cd js
