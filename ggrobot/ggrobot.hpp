@@ -13,13 +13,16 @@ public:
     ggrobot (account_name self) : contract (self) {}
 
     // @abi action
-    void newpurrecord (const uint64_t   purchase_id,
-                        const account_name  gamebuyer,
-                        const string        source,
-                        const string        game,
-                        const string        purchase_name,
-                        const asset         price,
-                        uint32_t            purchase_date) ;
+    void newpurrecord (const uint64_t      purchase_id,
+                                const account_name  recorder,
+                                const account_name  eosgamebuyer,
+                                const string        gggamebuyer,
+                                //const string        battlenetuser,
+                                const string        source,
+                                const string        game,
+                                const string        purchase_name,
+                                const asset         price,
+                                const uint32_t      purchase_date) ;
 
     // @abi action
     void newidentity (  const string        name,

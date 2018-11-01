@@ -37,6 +37,9 @@ alias cleos='docker exec -it ggrocket_nodeosd_1 /opt/eosio/bin/cleos -u http://n
 alias eosiocpp='docker exec -it ggrocket_nodeosd_1 eosiocpp'
 ```
 
+#kylin
+
+
 # Here is the command to compile
 ```
 eosiocpp -g /eosdev/ggrobot/ggrobot.abi /eosdev/ggrobot/ggrobot.hpp && eosiocpp -o /eosdev/ggrobot/ggrobot.wast /eosdev/ggrobot/ggrobot.cpp

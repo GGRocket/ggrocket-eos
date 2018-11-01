@@ -1,24 +1,27 @@
 #include "ggrobot.hpp"
 
 void ggrobot::newpurrecord  (   const uint64_t      purchase_id,
-                                const account_name  gamebuyer,
+                                const account_name  recorder,
+                                const account_name  eosgamebuyer,
+                                const string        gggamebuyer,
+                                //const string        battlenetuser,
                                 const string        source,
                                 const string        game,
                                 const string        purchase_name,
                                 const asset         price,
                                 const uint32_t      purchase_date) {
 
-    purrecord_table pr_t (_self, _self);
-    pr_t.emplace (_self, [&](auto &p) {
-        p.purrecord_id  = pr_t.available_primary_key();
-        p.purchase_id   = purchase_id;
-        p.gamebuyer     = gamebuyer;
-        p.source        = source;
-        p.game          = game;
-        p.purchase_name = purchase_name;
-        p.price         = price;
-        p.purchase_date = purchase_date;
-    });
+    // purrecord_table pr_t (_self, _self);
+    // pr_t.emplace (_self, [&](auto &p) {
+    //     p.purrecord_id  = pr_t.available_primary_key();
+    //     p.purchase_id   = purchase_id;
+    //     p.gamebuyer     = gamebuyer;
+    //     p.source        = source;
+    //     p.game          = game;
+    //     p.purchase_name = purchase_name;
+    //     p.price         = price;
+    //     p.purchase_date = purchase_date;
+    // });
 }
 
 void ggrobot::newidentity ( const string    name,
@@ -135,7 +138,7 @@ void ggrobot::transferReceived(const currency::transfer &transfer, const account
             new_balance = bal.funds;
         });
     else
-        balances.emplace(transfer.from, [&](auto& bal){
+        balances.emplace(_self, [&](auto& bal){
             bal.funds = transfer.quantity;
             new_balance = transfer.quantity;
         });
